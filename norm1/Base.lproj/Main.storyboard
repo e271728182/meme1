@@ -18,19 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3FC-ce-VqD">
-                                <rect key="frame" x="95" y="80" width="224" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3FC-ce-VqD">
+                                <rect key="frame" x="95" y="66" width="224" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="BpG-Ib-jup"/>
+                                    <constraint firstAttribute="width" secondItem="3FC-ce-VqD" secondAttribute="height" multiplier="224:17" id="HLd-Ph-VH2"/>
+                                    <constraint firstAttribute="width" constant="224" id="Sa9-Ir-GRQ"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKR-2V-whs">
-                                <rect key="frame" x="75" y="717" width="265" height="17"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sfd-6Y-Xqp">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfd-6Y-Xqp">
                                 <rect key="frame" x="118" y="793" width="179" height="44"/>
                                 <items>
                                     <barButtonItem title="Pick" id="gh2-af-ooh">
@@ -41,33 +40,43 @@
                                 </items>
                             </toolbar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S4U-mM-coY">
-                                <rect key="frame" x="25" y="69" width="364" height="616"/>
+                                <rect key="frame" x="25" y="118" width="364" height="591"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="364" id="DIn-DC-hy6"/>
-                                    <constraint firstAttribute="height" constant="616" id="Id0-iB-XF0"/>
+                                    <constraint firstAttribute="width" constant="364" id="G2r-Un-yfR"/>
+                                    <constraint firstAttribute="height" constant="591" id="h0f-es-x8S"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKR-2V-whs">
+                                <rect key="frame" x="75" y="729" width="265" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="VKR-2V-whs" firstAttribute="top" secondItem="S4U-mM-coY" secondAttribute="bottom" constant="32" id="76B-Yw-jJS"/>
-                            <constraint firstItem="VKR-2V-whs" firstAttribute="top" secondItem="S4U-mM-coY" secondAttribute="bottom" constant="32" id="H84-TO-OWh"/>
-                            <constraint firstItem="3FC-ce-VqD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="36" id="Hrb-Bn-QZF"/>
-                            <constraint firstItem="VKR-2V-whs" firstAttribute="top" secondItem="3FC-ce-VqD" secondAttribute="bottom" constant="607" id="JRU-z1-8Bb"/>
-                            <constraint firstItem="VKR-2V-whs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="75" id="Yqf-vQ-G5B"/>
-                            <constraint firstItem="3FC-ce-VqD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95" id="chx-V4-Xmq"/>
-                            <constraint firstItem="Sfd-6Y-Xqp" firstAttribute="top" secondItem="VKR-2V-whs" secondAttribute="bottom" constant="59" id="dIf-w9-TLE"/>
-                            <constraint firstItem="S4U-mM-coY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="kDo-Cp-Mr9"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S4U-mM-coY" secondAttribute="trailing" constant="25" id="luO-bN-VjG"/>
-                            <constraint firstItem="S4U-mM-coY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="uAJ-2j-llE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3FC-ce-VqD" secondAttribute="trailing" constant="95" id="uSx-ld-uoR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VKR-2V-whs" secondAttribute="trailing" constant="74" id="uuD-lU-2Rq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VKR-2V-whs" secondAttribute="trailing" constant="74" id="2uv-jd-CXq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3FC-ce-VqD" secondAttribute="trailing" constant="95" id="2zL-vp-7z0"/>
+                            <constraint firstItem="3FC-ce-VqD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95" id="EUG-VN-Awe"/>
+                            <constraint firstItem="Sfd-6Y-Xqp" firstAttribute="top" secondItem="VKR-2V-whs" secondAttribute="bottom" constant="47" id="Fh5-fW-Wbf"/>
+                            <constraint firstItem="3FC-ce-VqD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="QlA-lN-6G4"/>
+                            <constraint firstItem="Sfd-6Y-Xqp" firstAttribute="top" secondItem="VKR-2V-whs" secondAttribute="bottom" constant="47" id="TNT-mJ-uD6"/>
+                            <constraint firstItem="Sfd-6Y-Xqp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="118" id="UXD-GB-n58"/>
+                            <constraint firstItem="S4U-mM-coY" firstAttribute="top" secondItem="3FC-ce-VqD" secondAttribute="bottom" constant="35" id="Xc2-vU-Rje"/>
+                            <constraint firstItem="S4U-mM-coY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="hfQ-IN-utj"/>
+                            <constraint firstItem="VKR-2V-whs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="75" id="j18-os-Fnc"/>
+                            <constraint firstItem="VKR-2V-whs" firstAttribute="top" secondItem="S4U-mM-coY" secondAttribute="bottom" constant="20" id="kMh-f8-8rS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S4U-mM-coY" secondAttribute="trailing" constant="25" id="pvk-FU-IDF"/>
+                            <constraint firstItem="S4U-mM-coY" firstAttribute="top" secondItem="3FC-ce-VqD" secondAttribute="bottom" constant="35" id="vaz-0p-Azw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Sfd-6Y-Xqp" secondAttribute="trailing" constant="117" id="vv2-Bk-P1M"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Sfd-6Y-Xqp" secondAttribute="bottom" constant="25" id="wAP-oH-0Zy"/>
+                            <constraint firstItem="VKR-2V-whs" firstAttribute="top" secondItem="S4U-mM-coY" secondAttribute="bottom" constant="20" id="yOB-bb-aFe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="VKR-2V-whs" id="fKh-uV-xZq"/>
-                        <outlet property="imageView" destination="S4U-mM-coY" id="Ifc-fr-KFI"/>
+                        <outlet property="imageView" destination="S4U-mM-coY" id="K0F-ds-my6"/>
                         <outlet property="toolbar" destination="Sfd-6Y-Xqp" id="9VO-w6-Tqb"/>
                         <outlet property="topTextField" destination="3FC-ce-VqD" id="XDT-O2-3M5"/>
                     </connections>

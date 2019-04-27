@@ -17,6 +17,7 @@ UINavigationControllerDelegate{
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bottomTextField: UITextField!
     
+    @IBOutlet weak var MemeButton: UIButton!
     //struct to hold image & text info
     struct Meme{
         var originalImage:UIImage?
@@ -28,18 +29,21 @@ UINavigationControllerDelegate{
     func generateMemedImage() -> UIImage {
         //hide toolbar and navigation bar
         self.toolbar.isHidden = true
+        self.MemeButton.isHidden=true
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.toolbar.isHidden = false
+        self.MemeButton.isHidden=false
         return memeImage
     }
   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.imageView.image=UIImage(named: "Nikki")
     }
 
     
@@ -55,11 +59,15 @@ UINavigationControllerDelegate{
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         imageView.image = image
-        let memeImage=generateMemedImage()
-        imageView.image=memeImage
+        //let memeImage=generateMemedImage()
+        //imageView.image=memeImage
         
         dismiss(animated:true, completion: nil)
         
     }
     
+    @IBAction func MemeMe(_ sender: Any) {
+        let memeImage=generateMemedImage()
+        imageView.image=memeImage
+    }
 }

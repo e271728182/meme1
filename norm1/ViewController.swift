@@ -31,30 +31,7 @@ UINavigationControllerDelegate{
       
     ]
     
-    //struct to hold image & text info
-    struct Meme{
-        var originalImage:UIImage?
-        var memedImage:UIImage?
-        var topText:String=""
-        var bottomText:String=""
-    }
-    //not complete function to change meme struct values
-    func generateMemedImage() -> UIImage {
-        //hide toolbar and navigation bar
-        self.toolbar.isHidden = true
-        //self.navigationBar?.isHidden=true
-        //self.MemeButton.isHidden=true
-        // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        self.toolbar.isHidden = false
-        //self.navigationBar?.isHidden=false
-        //self.MemeButton.isHidden=false
-        return memeImage
-    }
-  
+
     @IBAction func saveSendMeme(_ sender: Any) {
         let memeImage=generateMemedImage()
         let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
@@ -81,13 +58,13 @@ UINavigationControllerDelegate{
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .center
         topTextField.textAlignment = .center
-        view.frame.origin.y = -200
+      
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled=UIImagePickerController.isSourceTypeAvailable(.camera)
-        
+            subscribeToKeyboardNotifications()
         //subscribeToKeyboardNotifications()
     }
     
@@ -113,11 +90,6 @@ UINavigationControllerDelegate{
         
     }
     
-    @IBAction func MemeMe(_ sender: Any) {
-        let memeImage=generateMemedImage()
-
-        imageView.image=memeImage
-    }
 }
 
 //EXTENSIONS FOR NOTIFICATIONS AND RELATED METHODS
@@ -127,18 +99,27 @@ extension ViewController{
     func subscribeToKeyboardNotifications() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
     }
     
     func unsubscribeFromKeyboardNotifications() {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
-}
-//extension to keyboard notifications methods
-extension ViewController{
+
+
     @objc func keyboardWillShow(_ notification:Notification) {
-        
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if bottomTextField.isFirstResponder{
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+
+            view.frame.origin.y = 0
+    
     }
     
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
@@ -147,4 +128,33 @@ extension ViewController{
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
+}
+
+//extension for Meme related functions
+extension ViewController{
+    
+    //struct to hold image & text info
+    struct Meme{
+        var originalImage:UIImage?
+        var memedImage:UIImage?
+        var topText:String=""
+        var bottomText:String=""
+    }
+    //function to create the Meme
+    func generateMemedImage() -> UIImage {
+        //hide toolbar and navigation bar
+        self.toolbar.isHidden = true
+        //self.navigationBar?.isHidden=true
+        //self.MemeButton.isHidden=true
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.toolbar.isHidden = false
+        //self.navigationBar?.isHidden=false
+        //self.MemeButton.isHidden=false
+        return memeImage
+    }
+    
 }

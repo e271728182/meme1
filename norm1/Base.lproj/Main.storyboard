@@ -55,6 +55,8 @@
                                             <action selector="pickView:" destination="BYZ-38-t0r" id="3Cc-aM-MJJ"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="278" style="plain" systemItem="fixedSpace" id="Ug8-QY-A01"/>
+                                    <barButtonItem systemItem="camera" id="o9z-IR-Yzq"/>
                                 </items>
                             </toolbar>
                         </subviews>

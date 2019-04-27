@@ -13,7 +13,9 @@ UINavigationControllerDelegate{
 
     @IBOutlet weak var topTextField: UITextField!
      @IBOutlet weak var imageView: UIImageView!
-   
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bottomTextField: UITextField!
     
@@ -29,14 +31,16 @@ UINavigationControllerDelegate{
     func generateMemedImage() -> UIImage {
         //hide toolbar and navigation bar
         self.toolbar.isHidden = true
-        self.MemeButton.isHidden=true
+        self.navigationBar.isHidden=true
+        //self.MemeButton.isHidden=true
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.toolbar.isHidden = false
-        self.MemeButton.isHidden=false
+        self.navigationBar.isHidden=false
+        //self.MemeButton.isHidden=false
         return memeImage
     }
   
@@ -46,7 +50,13 @@ UINavigationControllerDelegate{
         self.imageView.image=UIImage(named: "Nikki")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        cameraButton.isEnabled=UIImagePickerController.isSourceTypeAvailable(.camera)
+        //subscribeToKeyboardNotifications()
+    }
     
+    //to pick up a picture from the photo album
     @IBAction func pickView(_ sender: Any) {
         let pickerController = UIImagePickerController()
         pickerController.delegate=self
@@ -55,12 +65,14 @@ UINavigationControllerDelegate{
         
             }
     
+    
+    //assign the image selected using the photo Album to the imageView
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         imageView.image = image
-        //let memeImage=generateMemedImage()
-        //imageView.image=memeImage
+        let memeImage=generateMemedImage()
+        imageView.image=memeImage
         
         dismiss(animated:true, completion: nil)
         

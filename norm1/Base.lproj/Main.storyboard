@@ -65,7 +65,9 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="VKR-2V-whs" id="fKh-uV-xZq"/>
+                        <outlet property="cameraButton" destination="o9z-IR-Yzq" id="aBI-cC-X3g"/>
                         <outlet property="imageView" destination="S4U-mM-coY" id="K0F-ds-my6"/>
+                        <outlet property="navigationBar" destination="NcR-Ez-QlR" id="JqY-Wc-kKG"/>
                         <outlet property="toolbar" destination="Sfd-6Y-Xqp" id="9VO-w6-Tqb"/>
                         <outlet property="topTextField" destination="3FC-ce-VqD" id="XDT-O2-3M5"/>
                     </connections>

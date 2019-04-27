@@ -13,13 +13,16 @@ UINavigationControllerDelegate{
 
     @IBOutlet weak var topTextField: UITextField!
      @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
+    
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bottomTextField: UITextField!
     
     @IBOutlet weak var MemeButton: UIButton!
+    
+    
     //struct to hold image & text info
     struct Meme{
         var originalImage:UIImage?
@@ -31,7 +34,7 @@ UINavigationControllerDelegate{
     func generateMemedImage() -> UIImage {
         //hide toolbar and navigation bar
         self.toolbar.isHidden = true
-        self.navigationBar.isHidden=true
+        //self.navigationBar?.isHidden=true
         //self.MemeButton.isHidden=true
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -39,11 +42,20 @@ UINavigationControllerDelegate{
         let memeImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.toolbar.isHidden = false
-        self.navigationBar.isHidden=false
+        //self.navigationBar?.isHidden=false
         //self.MemeButton.isHidden=false
         return memeImage
     }
   
+    @IBAction func saveSendMeme(_ sender: Any) {
+        let memeImage=generateMemedImage()
+        imageView.image=memeImage
+    }
+    @IBAction func resetView(_ sender: Any) {
+        self.imageView.image=nil
+        self.bottomTextField.text=nil
+        self.topTextField.text=nil
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -53,6 +65,7 @@ UINavigationControllerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled=UIImagePickerController.isSourceTypeAvailable(.camera)
+        
         //subscribeToKeyboardNotifications()
     }
     
@@ -71,9 +84,9 @@ UINavigationControllerDelegate{
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         imageView.image = image
-        let memeImage=generateMemedImage()
-        imageView.image=memeImage
-        
+        //let memeImage=generateMemedImage()
+        //imageView.image=memeImage
+        self.cancelButton.isEnabled=true
         dismiss(animated:true, completion: nil)
         
     }

@@ -22,6 +22,14 @@ UINavigationControllerDelegate{
     
     @IBOutlet weak var MemeButton: UIButton!
     
+    let memeTextAttributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeColor.rawValue): UIColor.black,
+        NSAttributedString.Key.foregroundColor: UIColor.white,
+        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSAttributedString.Key.strokeWidth: -3,
+        NSAttributedString.Key.backgroundColor: UIColor.clear
+      
+    ]
     
     //struct to hold image & text info
     struct Meme{
@@ -49,6 +57,14 @@ UINavigationControllerDelegate{
   
     @IBAction func saveSendMeme(_ sender: Any) {
         let memeImage=generateMemedImage()
+        let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
+        
+        controller.completionWithItemsHandler = {
+            (activityType, complete, returnedItems, activityError ) in
+            
+            
+        }
+        present(controller, animated: true, completion: nil)
         imageView.image=memeImage
     }
     @IBAction func resetView(_ sender: Any) {
@@ -60,6 +76,11 @@ UINavigationControllerDelegate{
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.imageView.image=UIImage(named: "Nikki")
+        topTextField.defaultTextAttributes = memeTextAttributes
+        
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.textAlignment = .center
+        topTextField.textAlignment = .center
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +114,7 @@ UINavigationControllerDelegate{
     
     @IBAction func MemeMe(_ sender: Any) {
         let memeImage=generateMemedImage()
+
         imageView.image=memeImage
     }
 }

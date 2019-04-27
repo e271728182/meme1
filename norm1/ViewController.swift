@@ -81,6 +81,7 @@ UINavigationControllerDelegate{
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .center
         topTextField.textAlignment = .center
+        view.frame.origin.y = -200
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -116,5 +117,34 @@ UINavigationControllerDelegate{
         let memeImage=generateMemedImage()
 
         imageView.image=memeImage
+    }
+}
+
+//EXTENSIONS FOR NOTIFICATIONS AND RELATED METHODS
+
+//extension to subsribe to keyboard notifications
+extension ViewController{
+    func subscribeToKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+}
+//extension to keyboard notifications methods
+extension ViewController{
+    @objc func keyboardWillShow(_ notification:Notification) {
+        
+        view.frame.origin.y -= getKeyboardHeight(notification)
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
     }
 }

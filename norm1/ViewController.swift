@@ -20,8 +20,8 @@ UINavigationControllerDelegate{
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bottomTextField: UITextField!
     
-    @IBOutlet weak var MemeButton: UIButton!
-    
+
+//Attributes for the meme text
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeColor.rawValue): UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -31,7 +31,7 @@ UINavigationControllerDelegate{
       
     ]
     
-
+//function when the send button is created
     @IBAction func saveSendMeme(_ sender: Any) {
         let memeImage=generateMemedImage()
         let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
@@ -42,23 +42,24 @@ UINavigationControllerDelegate{
             
         }
         present(controller, animated: true, completion: nil)
-        imageView.image=memeImage
+        //imageView.image=memeImage
     }
     @IBAction func resetView(_ sender: Any) {
         self.imageView.image=nil
-        self.bottomTextField.text=nil
-        self.topTextField.text=nil
+
+        cancelButton.isEnabled=false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.imageView.image=UIImage(named: "Nikki")
+        //self.imageView.image=UIImage(named: "Nikki")
         topTextField.defaultTextAttributes = memeTextAttributes
-        
+        //self.bottomTextField.text="bottom"
+        //self.topTextField.text="top"
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .center
         topTextField.textAlignment = .center
-      
+        cancelButton.isEnabled=false
     }
 
     override func viewWillAppear(_ animated: Bool) {

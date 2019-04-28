@@ -44,7 +44,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="278" style="plain" systemItem="fixedSpace" id="Ug8-QY-A01"/>
-                                    <barButtonItem systemItem="camera" id="o9z-IR-Yzq"/>
+                                    <barButtonItem systemItem="camera" id="o9z-IR-Yzq">
+                                        <connections>
+                                            <action selector="cameraSelfie:" destination="BYZ-38-t0r" id="e1D-Xv-EQn"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="80" translatesAutoresizingMaskIntoConstraints="NO" id="VKR-2V-whs">

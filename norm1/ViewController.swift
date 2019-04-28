@@ -30,20 +30,33 @@ UINavigationControllerDelegate{
         NSAttributedString.Key.backgroundColor: UIColor.clear
       
     ]
-    
+    func configureTextField(_ textField: UITextField,_ textAttribute:[NSAttributedString.Key: Any], text: String){
+        textField.text = text
+        
+        //textField.delegate = textFieldDelegate
+        textField.defaultTextAttributes = textAttribute
+        textField.textAlignment = .center
+    }
 //function when the send button is created
     @IBAction func saveSendMeme(_ sender: Any) {
         let memeImage=generateMemedImage()
-        let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
         
-        controller.completionWithItemsHandler = {
-            (activityType, complete, returnedItems, activityError ) in
-            
+        activityController.completionWithItemsHandler = { activity, success, items, error in
+            if success {
+                if self.imageView.image != nil{
+                    var meme=Meme(originalImage: self.imageView.image, memedImage:memeImage , topText: self.topTextField?.text ?? "", bottomText: self.bottomTextField?.text ?? "")}
+            }
             
         }
-        present(controller, animated: true, completion: nil)
+        
+        present(activityController, animated: true, completion: nil)
         //imageView.image=memeImage
     }
+    
+    
+
+    
     @IBAction func resetView(_ sender: Any) {
         self.imageView.image=nil
 
@@ -51,14 +64,10 @@ UINavigationControllerDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //self.imageView.image=UIImage(named: "Nikki")
-        topTextField.defaultTextAttributes = memeTextAttributes
-        //self.bottomTextField.text="bottom"
-        //self.topTextField.text="top"
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
-        topTextField.textAlignment = .center
+
+        configureTextField(topTextField,memeTextAttributes,text: "TOP")
+        configureTextField(bottomTextField,memeTextAttributes,text: "BOTTOM")
+        //topTextField.textAlignment = .center
         cancelButton.isEnabled=false
     }
 
@@ -77,8 +86,15 @@ UINavigationControllerDelegate{
         self.present(pickerController, animated: true, completion: nil)
         
             }
-    
-    
+    //take a picture with the camera
+    @IBAction func cameraSelfie(_ sender: Any) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate=self
+        pickerController.sourceType = .camera
+        self.present(pickerController, animated: true, completion: nil)
+  
+        
+    }
     //assign the image selected using the photo Album to the imageView
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
@@ -108,6 +124,7 @@ extension ViewController{
     func unsubscribeFromKeyboardNotifications() {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
 

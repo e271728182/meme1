@@ -155,12 +155,7 @@ extension ViewController{
 extension ViewController{
     
     //struct to hold image & text info
-    struct Meme{
-        var originalImage:UIImage?
-        var memedImage:UIImage?
-        var topText:String=""
-        var bottomText:String=""
-    }
+
     //function to create the Meme
     func generateMemedImage() -> UIImage {
         //hide toolbar and navigation bar

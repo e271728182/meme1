@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController,UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
-
+    
     @IBOutlet weak var topTextField: UITextField!
-     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     
     
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -20,15 +20,15 @@ UINavigationControllerDelegate{
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bottomTextField: UITextField!
     
-
-//Attributes for the meme text
+    
+    //Attributes for the meme text
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeColor.rawValue): UIColor.black,
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth: -3,
-        NSAttributedString.Key.backgroundColor: UIColor.clear
-      
+        .strokeColor: UIColor.black,
+        .foregroundColor: UIColor.white,
+        .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        .strokeWidth: -3,
+        .backgroundColor: UIColor.clear
+        
     ]
     func configureTextField(_ textField: UITextField,_ textAttribute:[NSAttributedString.Key: Any], text: String){
         textField.text = text
@@ -37,7 +37,8 @@ UINavigationControllerDelegate{
         textField.defaultTextAttributes = textAttribute
         textField.textAlignment = .center
     }
-//function when the send button is created
+    
+    //function when the send button is created
     @IBAction func saveSendMeme(_ sender: Any) {
         let memeImage=generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
@@ -51,48 +52,51 @@ UINavigationControllerDelegate{
         }
         
         present(activityController, animated: true, completion: nil)
-        //imageView.image=memeImage
+        
     }
     
     
-
+    
     
     @IBAction func resetView(_ sender: Any) {
         self.imageView.image=nil
-
+        
         cancelButton.isEnabled=false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureTextField(topTextField,memeTextAttributes,text: "TOP")
         configureTextField(bottomTextField,memeTextAttributes,text: "BOTTOM")
-        //topTextField.textAlignment = .center
+        
         cancelButton.isEnabled=false
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled=UIImagePickerController.isSourceTypeAvailable(.camera)
-            subscribeToKeyboardNotifications()
-        //subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotifications()
+        
     }
     
-    //to pick up a picture from the photo album
-    @IBAction func pickView(_ sender: Any) {
+    //this function select image from a sourcetype passed to it
+    func selectImageFromSource(origin source:UIImagePickerController.SourceType)
+    {
         let pickerController = UIImagePickerController()
         pickerController.delegate=self
-        pickerController.sourceType = .savedPhotosAlbum
+        pickerController.sourceType = source
         self.present(pickerController, animated: true, completion: nil)
         
-            }
+    }
+    //to pick up a picture from the photo album
+    @IBAction func pickView(_ sender: Any) {
+        selectImageFromSource(origin: .savedPhotosAlbum)
+        
+    }
     //take a picture with the camera
     @IBAction func cameraSelfie(_ sender: Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate=self
-        pickerController.sourceType = .camera
-        self.present(pickerController, animated: true, completion: nil)
-  
+
+        selectImageFromSource(origin: .camera)
         
     }
     //assign the image selected using the photo Album to the imageView
@@ -100,8 +104,7 @@ UINavigationControllerDelegate{
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         imageView.image = image
-        //let memeImage=generateMemedImage()
-        //imageView.image=memeImage
+
         self.cancelButton.isEnabled=true
         dismiss(animated:true, completion: nil)
         
@@ -118,7 +121,7 @@ extension ViewController{
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
     
     func unsubscribeFromKeyboardNotifications() {
@@ -126,8 +129,8 @@ extension ViewController{
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
-
+    
+    
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomTextField.isFirstResponder{
             view.frame.origin.y -= getKeyboardHeight(notification)
@@ -135,9 +138,9 @@ extension ViewController{
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-
-            view.frame.origin.y = 0
-    
+        
+        view.frame.origin.y = 0
+        
     }
     
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
@@ -162,8 +165,7 @@ extension ViewController{
     func generateMemedImage() -> UIImage {
         //hide toolbar and navigation bar
         self.toolbar.isHidden = true
-        //self.navigationBar?.isHidden=true
-        //self.MemeButton.isHidden=true
+
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)

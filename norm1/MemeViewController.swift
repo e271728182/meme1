@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UIImagePickerControllerDelegate,
+class MemeViewController: UIViewController,UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
     
     @IBOutlet weak var topTextField: UITextField!
@@ -46,7 +46,7 @@ UINavigationControllerDelegate{
         activityController.completionWithItemsHandler = { activity, success, items, error in
             if success {
                 if self.imageView.image != nil{
-                    var meme=Meme(originalImage: self.imageView.image, memedImage:memeImage , topText: self.topTextField?.text ?? "", bottomText: self.bottomTextField?.text ?? "")}
+                    let meme=Meme(originalImage: self.imageView.image, memedImage:memeImage , topText: self.topTextField?.text ?? "", bottomText: self.bottomTextField?.text ?? "")}
             }
             
         }
@@ -115,7 +115,7 @@ UINavigationControllerDelegate{
 //EXTENSIONS FOR NOTIFICATIONS AND RELATED METHODS
 
 //extension to subsribe to keyboard notifications
-extension ViewController{
+extension MemeViewController{
     func subscribeToKeyboardNotifications() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -152,7 +152,7 @@ extension ViewController{
 }
 
 //extension for Meme related functions
-extension ViewController{
+extension MemeViewController{
     
     //struct to hold image & text info
 

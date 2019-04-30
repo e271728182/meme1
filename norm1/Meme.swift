@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+
 struct Meme{
     var originalImage:UIImage?
     var memedImage:UIImage?

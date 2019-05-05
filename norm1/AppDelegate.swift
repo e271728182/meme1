@@ -12,8 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var memes = [Meme]()
+    var arrayOfImagesName:[String]=["Madison","Nikki","Phoenix"]
+    var arrayOfIDs=["A","B","C"]
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

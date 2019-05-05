@@ -43,10 +43,19 @@ UINavigationControllerDelegate{
         let memeImage=generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
         
+        
         activityController.completionWithItemsHandler = { activity, success, items, error in
             if success {
                 if self.imageView.image != nil{
-                    let meme=Meme(originalImage: self.imageView.image, memedImage:memeImage , topText: self.topTextField?.text ?? "", bottomText: self.bottomTextField?.text ?? "")}
+                    let meme=Meme(originalImage: self.imageView.image, memedImage:memeImage , topText: self.topTextField?.text ?? "", bottomText: self.bottomTextField?.text ?? "")
+                    
+                    let object = UIApplication.shared.delegate
+                    let appDelegate = object as! AppDelegate
+                    appDelegate.memes.append(meme)
+                    
+                }
+                
+
             }
             
         }

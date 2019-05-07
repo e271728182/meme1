@@ -1,21 +1,21 @@
 //
-//  CollectionViewController.swift
+//  MemeColViewController.swift
 //  norm1
 //
 //  Created by Gabriel Patterson on 5/5/19.
 //  Copyright © 2019 Gabounet. All rights reserved.
 //
 
-import Foundation
 import UIKit
-class CollectionViewController: UICollectionViewController {
+class MemeColViewController: UICollectionViewController {
     
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     var pname: [String]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
-        return appDelegate.arrayOfIDs
+        return appDelegate.arrayOfImagesName
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -45,9 +45,9 @@ class CollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
         
-        //let detailController = self.storyboard!.instantiateViewController(withIdentifier: "VillainDetailViewController") as! VillainDetailViewController
-       // detailController.villain = self.allVillains[(indexPath as NSIndexPath).row]
-       // self.navigationController!.pushViewController(detailController, animated: true)
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
+        detailController.imDUmp = UIImage(named: self.pname[indexPath.row])
+        self.navigationController!.pushViewController(detailController, animated: true)
         
     }
     

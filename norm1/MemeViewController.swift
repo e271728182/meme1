@@ -19,7 +19,7 @@ UINavigationControllerDelegate{
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bottomTextField: UITextField!
-    
+    var imDUmp:UIImage?
     
     //Attributes for the meme text
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
@@ -77,7 +77,9 @@ UINavigationControllerDelegate{
         
         configureTextField(topTextField,memeTextAttributes,text: "TOP")
         configureTextField(bottomTextField,memeTextAttributes,text: "BOTTOM")
-        
+        if (imDUmp != nil){
+            self.imageView.image=imDUmp
+        }
         cancelButton.isEnabled=false
     }
     

@@ -33,24 +33,27 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: Table View Data Source
     
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDelegate.arrayOfIDs.count
+        return appDelegate.memes.count
     }
     
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var ImagesName = appDelegate.arrayOfImagesName
-    print("ok it works")
+        
+    print("ok it Xworks")
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell")!
 
         // Set the name and image
-        cell.textLabel?.text = ImagesName[indexPath.row]
-        cell.imageView?.image = UIImage(named: ImagesName[indexPath.row])
+        cell.textLabel?.text = appDelegate.memes[indexPath.row].topText
+        cell.imageView?.image = appDelegate.memes[indexPath.row].originalImage
+    return cell
+    }
+    
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
+        detailController.imDUmp = appDelegate.memes[indexPath.row].originalImage
+        self.navigationController!.pushViewController(detailController, animated: true)
         
-        // If the cell has a detail label, we will put the evil scheme in.
-        //if let detailTextLabel = cell.detailTextLabel {
-            //detailTextLabel.text = "Scheme: \(villain.evilScheme)"
-        return cell
-        }
-        
+    }
     
     }
 

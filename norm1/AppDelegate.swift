@@ -12,10 +12,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var memes = [Meme]()
+    
     var arrayOfImagesName:[String]=["Madison","Nikki","Phoenix"]
     var arrayOfIDs=["A","B","C"]
+    //Bogus Meme for tryouts
+    var meme1=Meme(originalImage: UIImage(named:"Madison"), memedImage: nil, topText: "Madison", bottomText: "Madison")
+    var meme2=Meme(originalImage: UIImage(named:"Nikki"), memedImage: nil, topText: "Nikki", bottomText: "Nikki")
     
+    lazy var memes = [meme1,meme2]
+    
+    //memes.append(meme1)
+    //memes.append(meme2)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

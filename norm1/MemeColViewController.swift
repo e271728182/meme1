@@ -19,7 +19,7 @@ class MemeColViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return appDelegate.arrayOfIDs.count
+        return appDelegate.memes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -36,8 +36,8 @@ class MemeColViewController: UICollectionViewController {
         let imageView=cell.viewWithTag(2) as! UIImageView
         let tview=cell.viewWithTag(1) as! UILabel
         //cell.imageView?.image = UIImage(named: villain.imageName)
-        imageView.image=UIImage(named: ImagesName[indexPath.row])
-        tview.text=pname[indexPath.row]
+        imageView.image=appDelegate.memes[indexPath.row].originalImage
+        tview.text=appDelegate.memes[indexPath.row].topText
         
         return cell
      
@@ -46,7 +46,7 @@ class MemeColViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
         
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
-        detailController.imDUmp = UIImage(named: self.pname[indexPath.row])
+        detailController.imDUmp = appDelegate.memes[indexPath.row].originalImage
         self.navigationController!.pushViewController(detailController, animated: true)
         
     }

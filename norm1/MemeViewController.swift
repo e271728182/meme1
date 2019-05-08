@@ -52,7 +52,7 @@ UINavigationControllerDelegate{
                     let object = UIApplication.shared.delegate
                     let appDelegate = object as! AppDelegate
                     appDelegate.memes.append(meme)
-                    
+                    print("adding meme")
                 }
                 
 
@@ -69,8 +69,8 @@ UINavigationControllerDelegate{
     
     @IBAction func resetView(_ sender: Any) {
         self.imageView.image=nil
-        
-        cancelButton.isEnabled=false
+        navigationController?.popToRootViewController(animated: true)
+        //cancelButton.isEnabled=false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,12 +80,13 @@ UINavigationControllerDelegate{
         if (imDUmp != nil){
             self.imageView.image=imDUmp
         }
-        cancelButton.isEnabled=false
+        cancelButton.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled=UIImagePickerController.isSourceTypeAvailable(.camera)
+        self.tabBarController?.tabBar.isHidden = true
         subscribeToKeyboardNotifications()
         
     }
@@ -120,7 +121,14 @@ UINavigationControllerDelegate{
         dismiss(animated:true, completion: nil)
         
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    //the dismiss of the view controller when the Cancel button is pressed. The function is part of conforming with protocol UIImagePickerControllerDelegate
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
 }
 
 //EXTENSIONS FOR NOTIFICATIONS AND RELATED METHODS
@@ -160,6 +168,7 @@ extension MemeViewController{
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
+    
 }
 
 //extension for Meme related functions
@@ -182,5 +191,5 @@ extension MemeViewController{
         //self.MemeButton.isHidden=false
         return memeImage
     }
-    
+
 }

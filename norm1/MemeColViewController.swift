@@ -19,11 +19,13 @@ class MemeColViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("colcount:",appDelegate.memes.count)
         return appDelegate.memes.count
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var ImagesName = appDelegate.arrayOfImagesName
+        
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath)
         //let villain = self.allVillains[(indexPath as NSIndexPath).row]

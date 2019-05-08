@@ -33,7 +33,9 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: Table View Data Source
     
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print(appDelegate.memes.count)
         return appDelegate.memes.count
+    
     }
     
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

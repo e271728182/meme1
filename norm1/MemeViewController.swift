@@ -65,8 +65,6 @@ UINavigationControllerDelegate{
     }
     
     
-    
-    
     @IBAction func resetView(_ sender: Any) {
         self.imageView.image=nil
         navigationController?.popToRootViewController(animated: true)

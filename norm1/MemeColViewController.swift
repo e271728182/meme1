@@ -18,12 +18,19 @@ class MemeColViewController: UICollectionViewController {
         return appDelegate.arrayOfImagesName
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("colcount:",appDelegate.memes.count)
         return appDelegate.memes.count
         
     }
-    
+    //present the controller and start the app as if it was Meme1.0
+    @IBAction func goToMemeViewController(_ sender: AnyObject) {
+
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
+        self.navigationController!.pushViewController(detailController, animated: true)
+        
+    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         

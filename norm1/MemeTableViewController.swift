@@ -24,11 +24,11 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     // This is an array of Villain instances
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    var pname: [String]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.arrayOfIDs
-    }
+
+    @IBAction func goToMemeViewController(_ sender: AnyObject) {
+        
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
+        self.navigationController!.pushViewController(detailController, animated: true)}
     
     // MARK: Table View Data Source
     
@@ -48,7 +48,15 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
         cell.imageView?.image = appDelegate.memes[indexPath.row].originalImage
     return cell
     }
-    
+    //present the controller and start the app as if it was Meme1.0
+    @IBAction func toMemeVewController(_ sender: AnyObject) {
+        let memeController = storyboard!.instantiateViewController(withIdentifier: "Meme1.0")
+        //self.navigationController!.presentViewController(memeController, animated: true, completion: nil)
+        //Hide the bar with the back button and the tab Bar
+        navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
+        self.navigationController!.pushViewController(memeController, animated: true)
+    }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController

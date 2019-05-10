@@ -164,7 +164,13 @@
                             <outlet property="delegate" destination="QnZ-pG-a21" id="ZfG-Mh-ecF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="H6y-Rv-qis"/>
+                    <navigationItem key="navigationItem" id="H6y-Rv-qis">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="zh3-z3-QFM">
+                            <connections>
+                                <action selector="goToMemeViewController:" destination="QnZ-pG-a21" id="nib-Ge-Dbd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3D-6h-XRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -211,7 +217,13 @@
                             <outlet property="delegate" destination="1BW-9t-Us9" id="WUK-Ht-cTF"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="dJ8-ej-i9Q"/>
+                    <navigationItem key="navigationItem" id="dJ8-ej-i9Q">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LVV-Yb-erR">
+                            <connections>
+                                <action selector="goToMemeViewController:" destination="1BW-9t-Us9" id="EGd-2T-l1Q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B6T-9y-nhk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

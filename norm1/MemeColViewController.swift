@@ -12,17 +12,15 @@ class MemeColViewController: UICollectionViewController {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    var pname: [String]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.arrayOfImagesName
-    }
-    
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("colcount:",appDelegate.memes.count)
         return appDelegate.memes.count
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+//to reload the memes in case there is new data
+        self.collectionView?.reloadData()
     }
     //present the controller and start the app as if it was Meme1.0
     @IBAction func goToMemeViewController(_ sender: AnyObject) {
@@ -54,7 +52,7 @@ class MemeColViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
         
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "OldMeme") as! OldMemeViewController
         detailController.imDUmp = appDelegate.memes[indexPath.row].originalImage
         self.navigationController!.pushViewController(detailController, animated: true)
         

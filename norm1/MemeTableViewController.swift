@@ -7,24 +7,15 @@
 //
 
 import UIKit
-class MemeTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    // MARK: Properties
-    
-    // Get ahold of some villains, for the table
-    // This is an array of Villain instances
-   
-    
-    // MARK: Table View Data Source
-    
+//class MemeTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MemeTableViewController: UITableViewController {
 
-    // MARK: Properties
-    
-    // Get ahold of some villains, for the table
-    // This is an array of Villain instances
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.tableView.reloadData()
+    }
     @IBAction func goToMemeViewController(_ sender: AnyObject) {
         
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
@@ -32,15 +23,15 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: Table View Data Source
     
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print(appDelegate.memes.count)
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    print("table",appDelegate.memes.count)
         return appDelegate.memes.count
     
     }
     
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-    print("ok it Xworks")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell")!
 
         // Set the name and image
@@ -49,17 +40,10 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     return cell
     }
     //present the controller and start the app as if it was Meme1.0
-    @IBAction func toMemeVewController(_ sender: AnyObject) {
-        let memeController = storyboard!.instantiateViewController(withIdentifier: "Meme1.0")
-        //self.navigationController!.presentViewController(memeController, animated: true, completion: nil)
-        //Hide the bar with the back button and the tab Bar
-        navigationController?.isNavigationBarHidden = true
-        tabBarController?.tabBar.isHidden = true
-        self.navigationController!.pushViewController(memeController, animated: true)
-    }
 
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
+
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "OldMeme") as! OldMemeViewController
         detailController.imDUmp = appDelegate.memes[indexPath.row].originalImage
         self.navigationController!.pushViewController(detailController, animated: true)
         

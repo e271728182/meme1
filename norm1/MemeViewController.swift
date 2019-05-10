@@ -19,7 +19,7 @@ UINavigationControllerDelegate{
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var bottomTextField: UITextField!
-    var imDUmp:UIImage?
+    
     
     //Attributes for the meme text
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
@@ -52,7 +52,7 @@ UINavigationControllerDelegate{
                     let object = UIApplication.shared.delegate
                     let appDelegate = object as! AppDelegate
                     appDelegate.memes.append(meme)
-                    print("adding meme")
+                    print("adding meme",appDelegate.memes.count)
                 }
                 
 
@@ -75,9 +75,7 @@ UINavigationControllerDelegate{
         
         configureTextField(topTextField,memeTextAttributes,text: "TOP")
         configureTextField(bottomTextField,memeTextAttributes,text: "BOTTOM")
-        if (imDUmp != nil){
-            self.imageView.image=imDUmp
-        }
+ 
         cancelButton.isEnabled = true
     }
     

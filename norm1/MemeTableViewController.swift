@@ -17,7 +17,7 @@ class MemeTableViewController: UITableViewController {
         super.viewWillAppear(true)
         self.tableView.reloadData()
     }
-   
+   //to push the MemeViewController view
     @IBAction func goToMemeViewController(_ sender: AnyObject) {
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
         self.navigationController!.pushViewController(detailController, animated: true)}
@@ -33,7 +33,7 @@ class MemeTableViewController: UITableViewController {
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell")!
         // Set the name and image
-        cell.textLabel?.text = appDelegate.memes[indexPath.row].topText + appDelegate.memes[indexPath.row].bottomText
+        cell.textLabel?.text = appDelegate.memes[indexPath.row].topText + " " + appDelegate.memes[indexPath.row].bottomText
         cell.imageView?.image = appDelegate.memes[indexPath.row].originalImage
     return cell
         

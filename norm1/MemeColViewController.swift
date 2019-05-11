@@ -14,7 +14,7 @@ class MemeColViewController: UICollectionViewController {
     
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("colcount:",appDelegate.memes.count)
+        
         return appDelegate.memes.count
         
     }
@@ -42,12 +42,11 @@ class MemeColViewController: UICollectionViewController {
         let imageView=cell.viewWithTag(2) as! UIImageView
         
         imageView.image=appDelegate.memes[indexPath.row].memedImage
-        //tview.text=appDelegate.memes[indexPath.row].topText
         
         return cell
      
     }
-    
+    //to push the MemeViewController view
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
         
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "OldMeme") as! OldMemeViewController

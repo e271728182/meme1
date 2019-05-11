@@ -14,12 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
 
-    //Bogus Meme for tryouts
+    /*Bogus Meme for tryouts
     var meme1=Meme(originalImage: UIImage(named:"Madison"), memedImage: UIImage(named:"Madison"), topText: "Madison", bottomText: "Madison")
     var meme2=Meme(originalImage: UIImage(named:"Nikki"), memedImage: UIImage(named:"Nikki"), topText: "Nikki", bottomText: "Nikki")
-    
+
     lazy var memes = [meme1,meme2]
-    
+ */
+    var memes = [Meme]()
     //memes.append(meme1)
     //memes.append(meme2)
     

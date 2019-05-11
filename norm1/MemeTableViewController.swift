@@ -35,7 +35,7 @@ class MemeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell")!
 
         // Set the name and image
-        cell.textLabel?.text = appDelegate.memes[indexPath.row].topText
+        cell.textLabel?.text = appDelegate.memes[indexPath.row].topText + appDelegate.memes[indexPath.row].bottomText
         cell.imageView?.image = appDelegate.memes[indexPath.row].originalImage
     return cell
     }
@@ -44,7 +44,7 @@ class MemeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "OldMeme") as! OldMemeViewController
-        detailController.imDUmp = appDelegate.memes[indexPath.row].originalImage
+        detailController.imDUmp = appDelegate.memes[indexPath.row].memedImage
         self.navigationController!.pushViewController(detailController, animated: true)
         
     }

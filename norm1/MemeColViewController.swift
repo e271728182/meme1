@@ -23,13 +23,14 @@ class MemeColViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
 //to reload the memes in case there is new data
         self.collectionView?.reloadData()
+        self.tabBarController?.tabBar.isHidden = false
     }
    
     //present the controller and start the app as if it was Meme1.0
     @IBAction func goToMemeViewController(_ sender: AnyObject) {
 
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
-        self.navigationController!.pushViewController(detailController, animated: true)
+        let memeController = self.storyboard!.instantiateViewController(withIdentifier: "MemeController") as! MemeViewController
+        self.navigationController!.pushViewController(memeController, animated: true)
         
     }
     
@@ -49,9 +50,9 @@ class MemeColViewController: UICollectionViewController {
     //to push the MemeViewController view
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
         
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "OldMeme") as! OldMemeViewController
-        detailController.imDUmp = appDelegate.memes[indexPath.row].memedImage
-        self.navigationController!.pushViewController(detailController, animated: true)
+        let oldMemeController = self.storyboard!.instantiateViewController(withIdentifier: "OldMeme") as! OldMemeViewController
+        oldMemeController.imDUmp = appDelegate.memes[indexPath.row].memedImage
+        self.navigationController!.pushViewController(oldMemeController, animated: true)
         
     }
     

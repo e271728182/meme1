@@ -16,6 +16,8 @@ class MemeTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.tableView.reloadData()
+        self.tabBarController?.tabBar.isHidden = false
+        
     }
    //to push the MemeViewController view
     @IBAction func goToMemeViewController(_ sender: AnyObject) {

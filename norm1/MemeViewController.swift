@@ -9,7 +9,7 @@
 import UIKit
 
 class MemeViewController: UIViewController,UIImagePickerControllerDelegate,
-UINavigationControllerDelegate{
+UINavigationControllerDelegate,UITextFieldDelegate {
     
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
@@ -36,6 +36,11 @@ UINavigationControllerDelegate{
         //textField.delegate = textFieldDelegate
         textField.defaultTextAttributes = textAttribute
         textField.textAlignment = .center
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     //function when the send button is created

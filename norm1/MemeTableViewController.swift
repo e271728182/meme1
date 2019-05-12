@@ -42,7 +42,7 @@ class MemeTableViewController: UITableViewController {
     }
     
     //present the controller and start the app as if it was Meme1.0
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "OldMeme") as! OldMemeViewController
         detailController.imDUmp = appDelegate.memes[indexPath.row].memedImage
         self.navigationController!.pushViewController(detailController, animated: true)
